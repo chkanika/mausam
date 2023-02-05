@@ -12,20 +12,6 @@ function setup() {
 	createCanvas(400, 200);
 	background(220);
   ellipse(width/2, height/2, 100);
-  
-  
-
-//	var p = createP('gaanu (✿◠‿◠)');
-
-
-  
-//	p.style('color', 'white');
-//	p.style('font-size', '50px');
-//	p.style('font-family', 'timesnewroman');
-//  p.style('text-align', 'left')
-//	p.style('background-color', 'powerblue');
-//	p.style('padding', '1em');
-//	p.style('width', '50%');
 
 }
 

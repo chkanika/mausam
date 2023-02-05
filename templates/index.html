@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
+        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="../static/main.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.min.js"></script>
-        <link href="../static/style.css" rel="stylesheet"></link>
-        <title>Document</title>
-    </head> 
-<body onload="dothis()"> 
 
-    
+        <title>Document</title>
+
+        <link rel="stylesheet" type="text/css" href="../static/style.css">
+
+        
+        <script src="../static/libraries/p5.min.js"></script>
+        <script src="../static/libraries/p5.sound.min.js"></script>
+        <script src="../static/main.js"></script>
+        <script src="path/to/p5.sound.js"></script>
+<!---        <script src="../static/sketch.js"></script>  -->
+       
+
+        
+    </head> 
+    <body onload="dothis()"> 
+
+<!---
     <h2>hello</h2>
     <div>
         <span id="temperature"></span>
@@ -23,8 +32,8 @@
           <input type="text" id="location-input" placeholder="Enter a location">
           <input type="submit" value="Go" onclick="loadWeatherData()">
         </form>
-
-    
-</body>
+-->
+    <div id="myContainer"></div>
+    </body>
 
 </html>
