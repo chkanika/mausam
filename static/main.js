@@ -27,14 +27,16 @@ let yoff = 0;
 let xIncrement = 0.01;
 let yIncrement = 0.01;
 
-const Form = document.getElementById("countryForm")
- Form.addEventListener("submit", function(event) {
+const myForm = document.getElementById("countryForm")
+ myForm.addEventListener("submit", function(event) {
   event.preventDefault();
- 
 
-  console.log(Form.country.value)  
+  const country = form.country_value.value;
+          console.log(country);
 
-  fetch("http://api.weatherapi.com/v1/current.json?key=2aa2387eb5c648b5b6b232109232801&q=${Location}&aqi=no")
+  console.log(myForm.country_value.value)  
+
+  fetch("http://api.weatherapi.com/v1/current.json?key=2aa2387eb5c648b5b6b232109232801&q=${Country}&aqi=no")
   .then(response => response.json())
   .then(data => {
   })
