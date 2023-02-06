@@ -40,20 +40,36 @@ function mapTemperatureToColor(temp) {
   }
  
 
+  async function getWeatherData(city) {
+    const API_KEY = 'your_api_key_here';
+    const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=2aa2387eb5c648b5b6b232109232801&q=[India]&aqi=no`);
+    const data = await response.json();
+    return data;
+  }
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const city = document.getElementById('city').value;
+    const weatherData = await getWeatherData(city);
+    console.log(weatherData);
+    
+  }
+  
 
-  fetch('http://api.weatherapi.com/v1/current.json?key=2aa2387eb5c648b5b6b232109232801&q=[India]&aqi=no')
-    .then(response => response.json())
-    .then(data => {
-      temperature = data.main.temp;
+//   fetch('http://api.weatherapi.com/v1/current.json?key=2aa2387eb5c648b5b6b232109232801&q=[India]&aqi=no')
+//     .then(response => response.json())
+//     .then(data => {
+//       temperature = data.main.temp;
 
-      let temperature;
+//       let temperature;
 
-    async function setup() {    
-  temperature = await getWeather();
-}
-    });
+//     async function setup() {    
+//   temperature = await getWeather();
+// }
+//     });
 
-    fill(mapTemperatureToColor(temperature));
+//    
+
+fill(mapTemperatureToColor(temperature));
 
 
 
