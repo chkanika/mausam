@@ -27,50 +27,36 @@ let yoff = 0;
 let xIncrement = 0.01;
 let yIncrement = 0.01;
 
-
-
-function mapTemperatureToColor(temp) {
-    let normalizedTemp = (temp - minTemp) / (maxTemp - minTemp);
-  
-    let r = map(normalizedTemp, 0, 1, 255, 0);
-    let g = 0;
-    let b = map(normalizedTemp, 0, 1, 0, 255);
-  
-    return color(r, g, b);
-  }
+const Form = document.getElementById("countryForm")
+ Form.addEventListener("submit", function(event) {
+  event.preventDefault();
  
 
-  async function getWeatherData(city) {
-    const API_KEY = 'your_api_key_here';
-    const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=2aa2387eb5c648b5b6b232109232801&q=[India]&aqi=no`);
-    const data = await response.json();
-    return data;
-  }
-  async function handleSubmit(event) {
-    event.preventDefault();
-    const city = document.getElementById('city').value;
-    const weatherData = await getWeatherData(city);
-    console.log(weatherData);
+  console.log(Form.country.value)  
+
+  fetch("http://api.weatherapi.com/v1/current.json?key=2aa2387eb5c648b5b6b232109232801&q=${Location}&aqi=no")
+  .then(response => response.json())
+  .then(data => {
+  })
+  .catch(error => {
+    console.error("Error fetching data:", error);
+  });
+
+
+  // async function getWeatherData(city) {
+  //   const API_KEY = 'http://api.weatherapi.com/v1/current.json?key=2aa2387eb5c648b5b6b232109232801&q=${India}&aqi=no';
+  //   const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=2aa2387eb5c648b5b6b232109232801&q=${India}&aqi=no`);
+  //   const data = await response.json();
+  //   return data;
+  // }
+  // async function handleSubmit(event) {
+  //   event.preventDefault();
+  //   const city = document.getElementById('city').value;
+  //   const weatherData = await getWeatherData(city);
+  //   console.log(weatherData);
     
-  }
-  
-
-//   fetch('http://api.weatherapi.com/v1/current.json?key=2aa2387eb5c648b5b6b232109232801&q=[India]&aqi=no')
-//     .then(response => response.json())
-//     .then(data => {
-//       temperature = data.main.temp;
-
-//       let temperature;
-
-//     async function setup() {    
-//   temperature = await getWeather();
-// }
-//     });
-
-//    
-
-fill(mapTemperatureToColor(temperature));
-
+  // }
+})
 
 
 function setup() {
@@ -211,5 +197,18 @@ function draw() {
       }
     }
   }
+
+  function mapTemperatureToColor(temp) {
+    let normalizedTemp = (temp - minTemp) / (maxTemp - minTemp);
+  
+    let r = map(normalizedTemp, 0, 1, 255, 0);
+    let g = 0;
+    let b = map(normalizedTemp, 0, 1, 0, 255);
+  
+    return color(r, g, b);
+  }
+
+  fill(mapTemperatureToColor(temperature));
   
 }
+

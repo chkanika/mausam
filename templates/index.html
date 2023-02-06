@@ -7,31 +7,11 @@
 
         <title>Document</title>
 
-        
-        <link rel= "stylesheet" type= "text/css" href="../static/form.css">
-
-      
-
-
-
-    
         <script src="../static/libraries/p5.min.js"></script>
         <script src="../static/libraries/p5.sound.min.js"></script>
         <script src="../static/main.js"></script>
-        <script src="path/to/p5.sound.js"></script>
-        <script>
-            const form = document.getElementById('countryForm');
-            const artContainer = document.getElementById('artContainer');
-
-            form.addEventListener('submit', function(event) {
-                event.preventDefault();
-
-            const country = document.getElementById('country').value;
-  
-            artContainer.style.display = 'block';
-               });
-
-        </script>
+        
+        
     
        
 
@@ -42,15 +22,29 @@
     <div id="myContainer"></div>
     <form id="countryForm">
         <label for="country"> Enter your Place:</label>
-        <input type="text" id="country" country="">
+        <input type="text" id="country" name="country_value">
         <input type="submit" value="Submit">
       </form>
     </div>
   
 
-    <div id="artContainer" style="display: none;">
-      <!-- Generated art will be displayed here -->
-    </div>
+
     </body>
+
+    <link rel= "stylesheet" type= "text/css" href="../static/form.css">
+
+    <script>
+      const form = document.getElementById('countryForm');
+      const artContainer = document.getElementById('artContainer');
+
+      form.addEventListener('submit', function(event) {
+          event.preventDefault();
+
+          const country = form.country_value.value;
+          console.log(country);
+
+        });
+
+    </script>
 
 </html>
