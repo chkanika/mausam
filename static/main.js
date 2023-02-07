@@ -27,15 +27,19 @@ let yoff = 0;
 let xIncrement = 0.01;
 let yIncrement = 0.01;
 
-window.onload = function() {
-  let country = document.getElementById("country");
-  if (country) {
-    country.addEventListener('submit', function(event){
-      event.preventDefault();
-    })
-  }
 
-  console.log(country.value);
+window.onload = function() {
+  const countryForm = document.getElementById("countryForm");
+
+  countryForm.addEventListener('submit', function(event){
+    event.preventDefault();
+
+    const country = countryForm.country_value.value;
+    console.log(country);
+    
+  });
+
+  
 
 
 
