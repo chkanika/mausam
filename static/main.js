@@ -27,14 +27,18 @@ let yoff = 0;
 let xIncrement = 0.01;
 let yIncrement = 0.01;
 
-const myForm = document.getElementById("countryForm")
- myForm.addEventListener("submit", function(event) {
-  event.preventDefault();
+window.onload = function() {
+  let country = document.getElementById("country");
+  if (country) {
+    country.addEventListener('submit', function(event){
+      event.preventDefault();
+    })
+  }
 
-  const country = form.country_value.value;
-          console.log(country);
+  console.log(country.value);
+//  myForm.addEventListener("submit", function(event) {
+//   event.preventDefault();
 
-  console.log(myForm.country_value.value)  
 
   fetch("http://api.weatherapi.com/v1/current.json?key=2aa2387eb5c648b5b6b232109232801&q=${Country}&aqi=no")
   .then(response => response.json())
@@ -43,7 +47,7 @@ const myForm = document.getElementById("countryForm")
   .catch(error => {
     console.error("Error fetching data:", error);
   });
-
+};
 
   // async function getWeatherData(city) {
   //   const API_KEY = 'http://api.weatherapi.com/v1/current.json?key=2aa2387eb5c648b5b6b232109232801&q=${India}&aqi=no';
@@ -58,7 +62,7 @@ const myForm = document.getElementById("countryForm")
   //   console.log(weatherData);
     
   // }
-})
+
 
 
 function setup() {
@@ -75,6 +79,7 @@ function setup() {
   flowfield = new Array(rows * cols);
   flowcolorfield = new Array(rows * cols);
 }
+
 
 function Particle() {
   this.pos = createVector(random(width), random(height));
@@ -135,6 +140,7 @@ function Particle() {
     }
   }
 }
+
 
 function draw() {
   if (showField) {
@@ -211,6 +217,9 @@ function draw() {
   }
 
   fill(mapTemperatureToColor(temperature));
+
   
 }
+
+
 
