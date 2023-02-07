@@ -36,11 +36,10 @@ window.onload = function() {
   }
 
   console.log(country.value);
-//  myForm.addEventListener("submit", function(event) {
-//   event.preventDefault();
 
 
-  fetch("http://api.weatherapi.com/v1/current.json?key=2aa2387eb5c648b5b6b232109232801&q=${Country}&aqi=no")
+
+  fetch("http://api.weatherapi.com/v1/current.json?key=2aa2387eb5c648b5b6b232109232801&q=${India}&aqi=no")
   .then(response => response.json())
   .then(data => {
   })
