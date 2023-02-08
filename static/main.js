@@ -32,14 +32,14 @@ window.onload = function() {
   const countryForm = document.getElementById("countryForm");
 
   countryForm.addEventListener('submit', function(event){
-  event.preventDefault(); })
+    event.preventDefault(); 
 
-  const country = countryForm.country_value.value;
-  console.log(country);
+    const country = countryForm.country_value.value;
+    console.log(country);
     
   
 
-  fetch("http://api.weatherapi.com/v1/current.json?key=2aa2387eb5c648b5b6b232109232801&q={Pakistan}&aqi=no")
+  fetch("http://api.weatherapi.com/v1/current.json?key=2aa2387eb5c648b5b6b232109232801&q={India}}&aqi=no")
   .then(response => {
     console.log(response);
     return response.json();
@@ -58,6 +58,7 @@ window.onload = function() {
     console.error("Error fetching data:", error);
   });
  
+})
 }
 
 function mapTemperatureToColor(temp) {
