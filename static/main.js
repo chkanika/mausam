@@ -20,7 +20,7 @@ let branchRatio;
 let time = 0;
 let temperature = 0;
 let minTemp = 0;
-let maxTemp = 300;
+let maxTemp = 0;
 let country = '';
 let xoff = 0;
 let yoff = 0;
@@ -43,14 +43,27 @@ window.onload = function() {
 
 
 
-  fetch("http://api.weatherapi.com/v1/current.json?key=2aa2387eb5c648b5b6b232109232801&q=${India}&aqi=no")
-  .then(response => response.json())
+  fetch("http://api.weatherapi.com/v1/current.json?key=2aa2387eb5c648b5b6b232109232801&q={India}&aqi=no")
+  .then(response => {
+    console.log(response);
+    return response.json();
+  })
   .then(data => {
+    console.log(data);
+  const temperature = data.current.temp_c;
+  let tempFactor = map(temperature, 0, 40, 0.1, 2);
+  for (let i = 0; i < numParticles; i++) {
+    particles[i].maxSpeed = tempFactor;
+  }
+
+  document.getElementById("temperature").innerHTML = `Temperture: ${temperature}°C`
   })
   .catch(error => {
     console.error("Error fetching data:", error);
   });
-};
+ 
+  
+
 
   // async function getWeatherData(city) {
   //   const API_KEY = 'http://api.weatherapi.com/v1/current.json?key=2aa2387eb5c648b5b6b232109232801&q=${India}&aqi=no';
@@ -67,6 +80,31 @@ window.onload = function() {
   // }
 
 
+
+};
+
+// function setFlowSpeed() {
+//   if (temperature >= 0) {
+//     inc = map(temperature, 0, 30, incStart, inc);
+//   } else {
+//     inc = map(temperature, -30, 0, incStart, inc);
+//   }
+// }
+
+function mapTemperatureToColor(temp) {
+  let normalizedTemp = (temp - minTemp) / (maxTemp - minTemp);
+
+  let r = map(normalizedTemp, 0, 1, 255, 0);
+  let g = 0;
+  let b = map(normalizedTemp, 0, 1, 0, 255);
+
+  stroke(mapTemperatureToColor(temp))
+
+  console.log(mapTemperatureToColor(temp))
+
+  return color(r, g, b);
+
+}
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -208,21 +246,7 @@ function draw() {
       }
     }
   }
-
-  function mapTemperatureToColor(temp) {
-    let normalizedTemp = (temp - minTemp) / (maxTemp - minTemp);
-  
-    let r = map(normalizedTemp, 0, 1, 255, 0);
-    let g = 0;
-    let b = map(normalizedTemp, 0, 1, 0, 255);
-  
-    return color(r, g, b);
-  }
-
-  fill(mapTemperatureToColor(temperature));
-
   
 }
-
 
 
