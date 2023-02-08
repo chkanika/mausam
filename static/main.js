@@ -7,7 +7,7 @@ var cols, rows;
 var zoff = 0;
 var fps;
 var particles = [];
-var numParticles = 500;
+var numParticles = 0;
 var flowfield;
 var flowcolorfield;
 var magOff = 0;
@@ -49,15 +49,18 @@ window.onload = function() {
     })
     .then(data => {
       console.log(data);
-    const temperature = data.current.temp_c;
-    let tempFactor = map(temperature, 0, 40, 0.1, 2);
-    for (let i = 0; i < numParticles; i++) {
-      particles[i].maxSpeed = tempFactor;
-    }
+        temperature = data.current.temp_c;
+        numParticles = temperature
+        let tempFactor = map(numParticles, 0, 40, 0.1, 2);
 
-    document.getElementById("temperature").innerHTML = `Temperature: ${temperature}°C`
+        for (let i = 0; i < Math.abs(numParticles); i++) {
+          particles[i].maxSpeed = tempFactor;
+        }
+
+        document.getElementById("temperature").innerHTML = `Temperature: ${temperature}°C`
+        document.getElementById("country").innerHTML = `Place: ${countryForm}`
     })
-    document.getElementById("country").innerHTML = `Place: ${countryForm} `
+    
     .catch(error => {
       console.error("Error fetching data:", error);
     });
