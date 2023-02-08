@@ -35,29 +35,32 @@ window.onload = function() {
     event.preventDefault(); 
 
     const country = countryForm.country_value.value;
-    console.log(country);
+    const api_url = "http://api.weatherapi.com/v1/current.json?key=2aa2387eb5c648b5b6b232109232801&q="
+
+    let final_query = api_url + country
+
+    console.log(final_query);
     
+
+    fetch("final_query")
+    .then(response => {
+      console.log(response);
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+    const temperature = data.current.temp_c;
+    let tempFactor = map(temperature, 0, 40, 0.1, 2);
+    for (let i = 0; i < numParticles; i++) {
+      particles[i].maxSpeed = tempFactor;
+    }
+
+    document.getElementById("temperature").innerHTML = `Temperture: ${temperature}°C`
+    })
+    .catch(error => {
+      console.error("Error fetching data:", error);
+    });
   
-
-  fetch("http://api.weatherapi.com/v1/current.json?key=2aa2387eb5c648b5b6b232109232801&q={India}}&aqi=no")
-  .then(response => {
-    console.log(response);
-    return response.json();
-  })
-  .then(data => {
-    console.log(data);
-  const temperature = data.current.temp_c;
-  let tempFactor = map(temperature, 0, 40, 0.1, 2);
-  for (let i = 0; i < numParticles; i++) {
-    particles[i].maxSpeed = tempFactor;
-  }
-
-  document.getElementById("temperature").innerHTML = `Temperture: ${temperature}°C`
-  })
-  .catch(error => {
-    console.error("Error fetching data:", error);
-  });
- 
 })
 }
 
