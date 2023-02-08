@@ -9,6 +9,30 @@
 
         <script src="../static/libraries/p5.min.js"></script>
         <script src="../static/libraries/p5.sound.min.js"></script>
+        <style>
+          .temperature-table {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+            right: 0;
+          }
+          .temperature-row {
+            display: flex;
+            color: white;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            margin: 5px 0;
+          }
+          .temperature-label {
+            font-weight: bold;
+            color: white;
+            margin-right: 10px;
+          }
+        </style>
         
         
         
@@ -22,19 +46,22 @@
         <input type="text" id="country" name="country_value">
         <input type="submit" value="Submit">
       </form>
-    <p id="temperature"></p>
+      <div class="temperature-table">
+        <div class="temperature-row">
+          <div class="temperature-label">  </div>
+          <div id="country">Your place: </div>
+        </div>
+        <div class="temperature-row">
+          <div class="temperature-label"></div>
+          <div id="temperature"> &#8451;</div>
+          <p id="temperature"></p>
+          <p id="countryForm"></p>
 
-    
   
-
-
     </body>
 
     <link rel= "stylesheet" type= "text/css" href="../static/form.css">
     <script src="../static/main.js"></script>
 
-    
-
-  
 
 </html>
